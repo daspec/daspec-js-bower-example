@@ -1,0 +1,29 @@
+{
+  "name": "daspec-js-bower-example",
+  "version": "0.0.1",
+  "authors": [
+    "Sauf Pompiers <contact@saufpompiers.com>"
+  ],
+  "description": "Example project for DaSpec Bower installation -- see http://daspec.com/guides/install.html for more info",
+  "keywords": [
+    "daspec",
+    "test",
+    "bdd",
+    "tdd",
+    "specbyexample"
+  ],
+  "license": "MIT",
+  "homepage": "http://daspec.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "daspec": "*",
+    "showdown": "~1.2.2",
+    "bootstrap": "~3.3.5"
+  }
+}

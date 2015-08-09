@@ -1,0 +1,76 @@
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a; }
+
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.feature {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.marketing h2 {
+  font-weight: normal; }
+
+.feature p {
+  text-align: left; }
+
+.col-header {
+  width: 250px; }
+
+.instructions div {
+  margin-top: 1em; }
+
+.instructions img {
+  border: 0px;
+  max-width: 300px;
+  margin-left: 1em; }
+
+.enormous {
+  font-size: 10em;
+  display: block;
+  text-align: center; }
+
+.bottom {
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+  padding-top: 10px; }
+
+.center {
+  text-align: center; }
+
+.link-spacing {
+  padding-right: 0.5em; }
+
+#page-content table {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+#page-content table td, #page-content table th {
+  border: 1px solid silver;
+  padding: 5px; }
+
+.examples {
+  width: 100%;
+  min-height: 500px;
+  border: 1px dashed grey;
+  margin-bottom: 20px;
+  padding: 5px;
+  margin-top: 10px;
+  clear: both; }
+
+.code {
+  font-family: monospace;
+  white-space: pre; }
+
+input[format=html]:checked ~ [visible-format]:not([visible-format=html]) {
+  display: none; }
+
+input[format=md]:checked ~ [visible-format]:not([visible-format=md]) {
+  display: none; }
+
+.tab-pane {
+  padding-top: 10px; }
