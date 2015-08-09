@@ -8,7 +8,7 @@ var runDaSpec = function (spec, steps, systemUnderTest) {
 			}
 		},
 		defineSteps = function (context) {
-			exportObject(context); // syntax shugar, allow steps to just call defineStep instead of context.defineStep
+			exportObject(context); // syntax sugar, allow steps to just call defineStep instead of context.defineStep
 			eval(systemUnderTest + '\n' + steps);
 		},
 		runner, result, markdownFormatter, counter, compositeFormatter;
