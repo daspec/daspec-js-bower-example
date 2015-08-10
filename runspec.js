@@ -11,15 +11,13 @@ var runDaSpec = function (spec, steps, systemUnderTest) {
 			exportObject(context); // syntax sugar, allow steps to just call defineStep instead of context.defineStep
 			eval(systemUnderTest + '\n' + steps);
 		},
-		runner, result, markdownFormatter, counter, compositeFormatter;
+		runner, result, markdownFormatter, counter;
 	try {
-		markdownFormatter = new DaSpec.MarkdownResultFormatter();
-		counter = new DaSpec.CountingResultFormatter();
-		compositeFormatter = new DaSpec.CompositeResultFormatter();
-		compositeFormatter.add(markdownFormatter);
-		compositeFormatter.add(counter);
-		runner = new DaSpec.Runner(defineSteps, compositeFormatter);
-		runner.example(spec);
+		runner = new DaSpec.Runner(defineSteps);
+		markdownFormatter = new DaSpec.MarkdownResultFormatter(runner);
+		counter = new DaSpec.CountingResultListener(runner);
+
+		runner.execute(spec);
 		result = markdownFormatter.formattedResults();
 	} catch (e) {
 		result = '    ' + (e.stack || e.message || e.name || 'there was a problem executing the specification');
