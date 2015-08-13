@@ -22,7 +22,7 @@
 </div>
 
 <div class="container marketing" id="page-content">
-	<div class="well"><h1 id="hello-world-from-daspec">Hello World from DaSpec</h1>
+	<div><h1 id="hello-world-from-daspec">Hello World from DaSpec</h1>
 		<p>This is an example of a web page that runs DaSpec specifications in the browser. You can modify the spec, the system under test and the steps
 		linking them, then switch to the <b>Results</b> tab to execute the spec and see the outcome. </p>
 
@@ -39,18 +39,20 @@
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane fade in active" id="spec">
 				<span class="tabpanel-intro">This specification will be executed when you open the Result tab.</span>
-				<br/>
-				View:
-				<input type="radio" name="source-format" format="html"> Formatted
-				<input type="radio" name="source-format" format="md" checked> Markdown <br/>
-				<div class="alert alert-success alert-block">
-					<b>Tip:</b> Switch to the Markdown format to edit the spec, and play around with the values to see the impact in the Result tab.
-				</div>
-				<textarea id="markdownArea" class="examples code" visible-format="md">
-# this is a heading so it's just ignored, but the line below is normal text so it will be executed
+				<div class="format-areas">
+					<input type="radio" name="source-format" format="html">
+					<input type="radio" name="source-format" format="md" checked>
+					<button class="top-button eye-open" visible-format="md" target-format="html"
+						data-toggle="tooltip" data-placement="left" title="Show formatted preview"
+						></button>
+					<button class="top-button eye-closed" visible-format="html" target-format="md"
+						data-toggle="tooltip" data-placement="left" title="Show Markdown source"					
+						></button>
+					<div id="markdownArea" class="examples" visible-format="md"># this is a heading so it's just ignored, but the line below is normal text so it will be executed
 The right way to greet the World is "Hello, World!"
-				</textarea>
-				<div id="formattedMarkdownArea" class="examples" visible-format="html"></div>
+	</div>
+					<div id="formattedMarkdownArea" class="examples" visible-format="html"></div>
+				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="steps">
 				<span class="tabpanel-intro">
@@ -58,8 +60,7 @@ The right way to greet the World is "Hello, World!"
 					how to connect to the system under test. Change the code and re-run the specification
 					by switching to the Result tab to see the effects.
 				</span><br/>
-				<textarea id="stepsArea" class="examples code">
-// this adds a function to process any line of text matching the regular expression
+				<div id="stepsArea" class="examples">// this adds a function to process any line of text matching the regular expression
 // match groups in the regular expression will be passed to the function in the order from left to right
 //
 // So the sentence 'The right way to greet the World is "Hello, World!" will cause DaSpec to call
@@ -75,7 +76,7 @@ var actualResult = greetingFor(subject);
 
 this.assertEquals(expectedGreeting, actualResult, 1);
 });
-				</textarea>
+</div>
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="sut">
 				<span class="tabpanel-intro">
@@ -83,11 +84,10 @@ this.assertEquals(expectedGreeting, actualResult, 1);
 					Change the code to introduce bugs and re-run the specification
 					by switching to the Result tab to see the effects.
 				</span><br/>
-				<textarea id="sutArea" class="examples code">
-function greetingFor (subject) {
+<div id="sutArea" class="examples">function greetingFor (subject) {
 	return 'Hello, ' + subject + '!';
 }
-				</textarea>
+</div>
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="result">
 				<span class="tabpanel-intro">
@@ -101,13 +101,20 @@ function greetingFor (subject) {
 					<span role="failed">Failed: <span role="value"></span></span>
 					<span role="error">Error: <span role="value"></span></span>
 					<span role="skipped">Skipped: <span role="value"></span></span>
+					<span role="noexec"><b>Warning:</b> This spec did not contain any executable lines</span>
 				</div>
-				<b>View</b>:
-				<input type="radio" name="target-format" format="html" checked>&nbsp;Formatted
-				<input type="radio" name="target-format" format="md">&nbsp;Markdown
-				<br/>
-				<div id="outputArea" class="examples code" visible-format="md"></div>
-				<div id="formattedOutputArea" class="examples" visible-format="html"></div>
+				<div class="format-areas">
+					<input type="radio" name="target-format" format="html" checked>
+					<input type="radio" name="target-format" format="md">
+					<button class="top-button eye-open" visible-format="md" target-format="html"
+						data-toggle="tooltip" data-placement="left" title="Show formatted preview"
+						></button>
+					<button class="top-button eye-closed" visible-format="html" target-format="md"
+						data-toggle="tooltip" data-placement="left" title="Show Markdown source"					
+						></button>
+					<div id="outputArea" class="examples" visible-format="md"></div>
+					<div id="formattedOutputArea" class="examples" visible-format="html"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -115,10 +122,9 @@ function greetingFor (subject) {
 	
 	<script type="text/javascript" src="bower_components/daspec/compiled/daspec-web.js"></script>
 	<script type="text/javascript" src="bower_components/showdown/dist/showdown.js"></script>
+	<script type="text/javascript" src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
 	<script type="text/javascript" src="layout-example.js"></script>
 </div>
-
-
 <div class="container bottom">
 	<p>Built by <a href="https://twitter.com/gojkoadzic" target="_blank">@gojkoadzic</a> and <a href="https://twitter.com/davedf" target="_blank">@davedf</a>.</p>
 	<p>Copyright 2015 Sauf Pompiers Ltd. Code licensed under <a rel="license" href="https://github.com/daspec/daspec-js/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>

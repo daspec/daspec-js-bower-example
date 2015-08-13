@@ -1,4 +1,4 @@
-/*global document, $, window, showdown, DaSpec*/
+/*global document, $, window, showdown, DaSpec, ace*/
 var runDaSpec = function (spec, steps, systemUnderTest) {
 		'use strict';
 		var exportObject = function (object) {
@@ -31,45 +31,65 @@ var runDaSpec = function (spec, steps, systemUnderTest) {
 	daspecExamplePageLoad =  function () {
 		'use strict';
 		var runButton = document.getElementById('runButton'),
-		markdownArea = document.getElementById('markdownArea'),
-		formattedMarkdownArea = document.getElementById('formattedMarkdownArea'),
-		formattedOutputArea = document.getElementById('formattedOutputArea'),
-		stepsArea = document.getElementById('stepsArea'),
-		sutArea = document.getElementById('sutArea'),
-		updateAlert = function (counts) {
-			var alertClass;
-			if (counts.error || counts.failed) {
-				alertClass = 'alert-danger';
-			} else if (counts.skipped) {
-				alertClass = 'alert-warning';
-			} else if (counts.passed) {
-				alertClass = 'alert-success';
-			} else {
-				alertClass = 'alert-warning';
-			}
-			$('#outputSummary').removeClass('alert-warning alert-success alert-danger').addClass(alertClass);
-			Object.keys(counts).forEach(function (key) {
-				var field = $('#outputSummary [role=' + key + ']');
-				if (counts[key]) {
-					field.show().find('[role=value]').text(counts[key]);
+			formattedMarkdownArea = document.getElementById('formattedMarkdownArea'),
+			formattedOutputArea = document.getElementById('formattedOutputArea'),
+			updateAlert = function (counts) {
+				var alertClass;
+				counts.noexec = undefined;
+				if (counts.error || counts.failed) {
+					alertClass = 'alert-danger';
+				} else if (counts.skipped) {
+					alertClass = 'alert-warning';
+				} else if (counts.passed) {
+					alertClass = 'alert-success';
 				} else {
-					field.hide();
+					alertClass = 'alert-warning';
+					counts.noexec = 1;
 				}
-			});
-		},
-		rerun = function () {
-			var result = runDaSpec(markdownArea.value, stepsArea.value, sutArea.value);
-			$('#outputArea').text(result.text);
-			updateAlert(result.counts);
-			formattedOutputArea.innerHTML = converter.makeHtml(result.text);
-		},
-		converter = new showdown.Converter({simplifiedAutoLink: true, strikethrough: true, ghCodeBlocks: true, tables: true});
-		markdownArea.addEventListener('change', function () {
-			formattedMarkdownArea.innerHTML = converter.makeHtml(markdownArea.value);
+				$('#outputSummary').removeClass('alert-warning alert-success alert-danger').addClass(alertClass);
+				Object.keys(counts).forEach(function (key) {
+					var field = $('#outputSummary [role=' + key + ']');
+					if (counts[key] || undefined) {
+						field.show().find('[role=value]').text(counts[key]);
+					} else {
+						field.hide();
+					}
+				});
+			},
+			rerun = function () {
+				var result = runDaSpec(specEditor.getValue(), stepsEditor.getValue(), sutEditor.getValue());
+				outputEditor.setValue(result.text);
+				updateAlert(result.counts);
+				formattedOutputArea.innerHTML = converter.makeHtml(result.text);
+			},
+			converter = new showdown.Converter({simplifiedAutoLink: true, strikethrough: true, ghCodeBlocks: true, tables: true}),
+			stepsEditor = ace.edit('stepsArea'),
+			sutEditor = ace.edit('sutArea'),
+			specEditor = ace.edit('markdownArea'),
+			outputEditor = ace.edit('outputArea');
+
+		specEditor.getSession().on('change', function () {
+			formattedMarkdownArea.innerHTML = converter.makeHtml(specEditor.getValue());
 		});
-		formattedMarkdownArea.innerHTML = converter.makeHtml(markdownArea.value);
+		formattedMarkdownArea.innerHTML = converter.makeHtml(specEditor.getValue());
+
+		stepsEditor.getSession().setMode('ace/mode/javascript');
+		sutEditor.getSession().setMode('ace/mode/javascript');
+		specEditor.getSession().setMode('ace/mode/markdown');
+		outputEditor.getSession().setMode('ace/mode/markdown');
+
+		stepsEditor.setShowPrintMargin(false);
+		specEditor.setShowPrintMargin(false);
+		sutEditor.setShowPrintMargin(false);
+		outputEditor.setShowPrintMargin(false);
 
 		runButton.addEventListener('click', rerun);
+		$('button[target-format]').on('click', function () {
+			var btn = $(this);
+			btn.siblings('input[type=radio][format=' + btn.attr('target-format') + ']').prop('checked', true);
+		});
+		$('[data-toggle="tooltip"]').tooltip();
+
 	};
 
 window.addEventListener('load', daspecExamplePageLoad);
