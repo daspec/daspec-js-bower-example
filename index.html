@@ -1,76 +1,64 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-  <meta charset="utf-8">
-  <title>DaSpec -- Awesome executable specifications in Markdown</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="daspec, bdd, atdd, specification by example, spec by example" />
-  <meta name="description" content="DaSpec -- Awesome executable specifications in Markdown. Create living documentation for your software, and improve shared understanding between delivery teams and business domain expers using  BDD and specification by example.
+<head>
+<meta charset="utf-8">
+<title>DaSpec -- Awesome executable specifications in Markdown</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="daspec, bdd, atdd, specification by example, spec by example" />
+<meta name="description" content="DaSpec -- Awesome executable specifications in Markdown. Create living documentation for your software, and improve shared understanding between delivery teams and business domain expers using  BDD and specification by example.
 ">
-  <link rel="canonical" href="http://daspec.com/examples/hello_world/">
-  <meta name="author" content="Sauf Pompiers Ltd">
-  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
+<link rel="canonical" href="http://daspec.com/examples/hello_world/">
+<meta name="author" content="Sauf Pompiers Ltd">
+<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
 </head>
-
-
-  <body>
-
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <a href="http://www.daspec.com" class="navbar-brand">DaSpec in your browser</a>
-    </div><!--/.nav-collapse -->
-  </div>
+<body>
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="http://www.daspec.com" class="navbar-brand">DaSpec in your browser</a>
+		</div><!--/.nav-collapse -->
+	</div>
 </div>
-
 
 <div class="container marketing" id="page-content">
-  <div class="well">
-    <p>This is an example of a web page that runs DaSpec specifications in the browser. You can modify the spec, the system under test and the steps
-linking them, then switch to the <b>Results</b> tab to execute the spec and see the outcome. </p>
+	<div class="well"><h1 id="hello-world-from-daspec">Hello World from DaSpec</h1>
+		<p>This is an example of a web page that runs DaSpec specifications in the browser. You can modify the spec, the system under test and the steps
+		linking them, then switch to the <b>Results</b> tab to execute the spec and see the outcome. </p>
 
-<p>For an explanation how this works, see <a href="http://www.daspec.com/guides/hello_world.html">Hello World walkthrough</a>. For more complex examples,
-see <a href="http://www.daspec.com/examples">Key Feature Examples</a>.</p>
-</div>
-<div>
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#spec" role="tab" data-toggle="tab">Specification</a></li>
-    <li ><a href="#steps" role="tab" data-toggle="tab">Step definitions</a></li>
-	<li ><a href="#sut" role="tab" data-toggle="tab">System under test</a></li>
-	<li ><a id="runButton" href="#result" role="tab" data-toggle="tab">&#9654; Result</a></li>
-
-  </ul>
- <div class="tab-content">
-	 <div role="tabpanel" class="tab-pane fade in active" id="spec">
-		 <span class="tabpanel-intro">
-	 This specification will be executed when you open the Result tab. 
-
-	</span><br/>
-		View:
-	 <input type="radio" name="source-format" format="html" checked> Formatted
-     <input type="radio" name="source-format" format="md"> Markdown <br/> 
-   <div class="alert alert-success alert-block">
-     <b>Tip:</b> Switch to the Markdown format to edit the spec, and play around with the values to see the impact in the Result tab.
-   </div>
-<textarea id="markdownArea" class="examples code" visible-format="md">
-# this is a heading so it's just ignored
-
+		<p>For an explanation how this works, see <a href="http://www.daspec.com/guides/hello_world.html">Hello World walkthrough</a>. For more complex examples,
+		see <a href="http://www.daspec.com/examples">Key Feature Examples</a>.</p>
+	</div>
+	<div>
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="active"><a href="#spec" role="tab" data-toggle="tab">Specification</a></li>
+			<li ><a href="#steps" role="tab" data-toggle="tab">Step definitions</a></li>
+			<li ><a href="#sut" role="tab" data-toggle="tab">System under test</a></li>
+			<li ><a id="runButton" href="#result" role="tab" data-toggle="tab">&#9654; Result</a></li>
+		</ul>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane fade in active" id="spec">
+				<span class="tabpanel-intro">This specification will be executed when you open the Result tab.</span>
+				<br/>
+				View:
+				<input type="radio" name="source-format" format="html"> Formatted
+				<input type="radio" name="source-format" format="md" checked> Markdown <br/>
+				<div class="alert alert-success alert-block">
+					<b>Tip:</b> Switch to the Markdown format to edit the spec, and play around with the values to see the impact in the Result tab.
+				</div>
+				<textarea id="markdownArea" class="examples code" visible-format="md">
+# this is a heading so it's just ignored, but the line below is normal text so it will be executed
 The right way to greet the World is "Hello, World!"
-
-</textarea>
-<div id="formattedMarkdownArea" class="examples" visible-format="html">
-</div>
-
-	 </div>
-	 <div role="tabpanel" class="tab-pane fade" id="steps">
-<span class="tabpanel-intro">
-	This tab contains the step definitions, the automation interface that tells DaSpec
-	how to connect to the system under test. Change the code and re-run the specification
-	by switching to the Result tab to see the effects.
-</span><br/>
-<textarea id="stepsArea" class="examples code">
+				</textarea>
+				<div id="formattedMarkdownArea" class="examples" visible-format="html"></div>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="steps">
+				<span class="tabpanel-intro">
+					This tab contains the step definitions, the automation interface that tells DaSpec
+					how to connect to the system under test. Change the code and re-run the specification
+					by switching to the Result tab to see the effects.
+				</span><br/>
+				<textarea id="stepsArea" class="examples code">
 // this adds a function to process any line of text matching the regular expression
 // match groups in the regular expression will be passed to the function in the order from left to right
 //
@@ -78,118 +66,66 @@ The right way to greet the World is "Hello, World!"
 // the function and pass World as the subject, and Hello, World! as the expected greeting.
 
 defineStep(/The right way to greet the (.*) is "(.*)"/, function (subject, expectedGreeting) {
-	var actualResult = greetingFor(subject);
+var actualResult = greetingFor(subject);
 
-	// the order is important for good reporting: first expected, then actual
-	//
-	// the third optional value tells DaSpec which argument is tested, so it can report nicely and cross out or bold only
-	// that part of the sentence. it's 0-based, so 1 means the second argument (expected greeting)
+// the order is important for good reporting: first expected, then actual
+//
+// the third optional value tells DaSpec which argument is tested, so it can report nicely and cross out or bold only
+// that part of the sentence. it's 0-based, so 1 means the second argument (expected greeting)
 
-	this.assertEquals(expectedGreeting, actualResult, 1);
+this.assertEquals(expectedGreeting, actualResult, 1);
 });
-
-</textarea>
-	</div>
-	 <div role="tabpanel" class="tab-pane fade" id="sut">
-<span class="tabpanel-intro">
-	This tab contains the production code, the system under test. 
-	Change the code to introduce bugs and re-run the specification
-	by switching to the Result tab to see the effects.
-</span><br/>
-<textarea id="sutArea" class="examples code">
+				</textarea>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="sut">
+				<span class="tabpanel-intro">
+					This tab contains the production code, the system under test.
+					Change the code to introduce bugs and re-run the specification
+					by switching to the Result tab to see the effects.
+				</span><br/>
+				<textarea id="sutArea" class="examples code">
 function greetingFor (subject) {
 	return 'Hello, ' + subject + '!';
 }
-
-</textarea>
-	 </div>
-	 <div role="tabpanel" class="tab-pane fade" id="result">
-<span class="tabpanel-intro">
-	This tab contains the test results - the executed specification. Change the values in the
-	Specification tab, or the code in the System under test tab and switch back here to see the impact.
-</span><br/>
-  <div id="outputSummary" class="alert alert-block">
-    <span role="executed">Executed: <span role="value"></span></span>
-    <span role="passed">Passed: <span role="value"></span></span>
-    <span role="failed">Failed: <span role="value"></span></span>
-    <span role="error">Error: <span role="value"></span></span>
-    <span role="skipped">Skipped: <span role="value"></span></span>
-   
-  </div>
-    <b>View</b>:
-	 <input type="radio" name="target-format" format="html" checked> Formatted
-	 <input type="radio" name="target-format" format="md"> Markdown
-    <br/>  
-		<div id="outputArea" class="examples code" visible-format="md">
+				</textarea>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="result">
+				<span class="tabpanel-intro">
+					This tab contains the test results - the executed specification. Change the values in the
+					Specification tab, or the code in the System under test tab and switch back here to see the impact.
+				</span>
+				<br/>
+				<div id="outputSummary" class="alert alert-block">
+					<span role="executed">Executed: <span role="value"></span></span>
+					<span role="passed">Passed: <span role="value"></span></span>
+					<span role="failed">Failed: <span role="value"></span></span>
+					<span role="error">Error: <span role="value"></span></span>
+					<span role="skipped">Skipped: <span role="value"></span></span>
+				</div>
+				<b>View</b>:
+				<input type="radio" name="target-format" format="html" checked>&nbsp;Formatted
+				<input type="radio" name="target-format" format="md">&nbsp;Markdown
+				<br/>
+				<div id="outputArea" class="examples code" visible-format="md"></div>
+				<div id="formattedOutputArea" class="examples" visible-format="html"></div>
+			</div>
 		</div>
-		<div id="formattedOutputArea" class="examples" visible-format="html">
-		</div>
-	 </div>
- </div>
-</div>
+	</div>
 
-<script type="text/javascript" src="bower_components/daspec/compiled/daspec-web.js"></script>
-<script type="text/javascript" src="bower_components/showdown/dist/showdown.js"></script>
-<script type="text/javascript" src="runspec.js"></script>
-<script type="text/javascript">
-	/*global document, DaSpec, localStorage*/
-window.addEventListener('load', function () {
-	var runButton = document.getElementById('runButton'),
-		markdownArea = document.getElementById('markdownArea'),
-		formattedMarkdownArea = document.getElementById('formattedMarkdownArea'),
-		outputArea = document.getElementById('outputArea'),
-		formattedOutputArea = document.getElementById('formattedOutputArea'),
-		stepsArea = document.getElementById('stepsArea');
-		sutArea = document.getElementById('sutArea'),
-       updateAlert = function (counts) {
-      var alertClass;
-      if (counts.error || counts.failed) {
-          alertClass='alert-danger';
-        } else if (counts.skipped) {
-          alertClass='alert-warning';
-        } else if (counts.passed) {
-          alertClass='alert-success';
-        } else {
-          alertClass='alert-warning';
-        }
-      $('#outputSummary').removeClass('alert-warning alert-success alert-danger').addClass(alertClass);
-      Object.keys(counts).forEach(function (key) {
-        var field = $('#outputSummary [role=' + key + ']');
-        if (counts[key]) {
-            field.show().find('[role=value]').text(counts[key]);
-          } else {
-            field.hide();
-          }
-      });
-    },
-	  defineSteps = function (context) {
-      exportObject(context);
-      eval.apply(context, [sutArea.value + '\n' + stepsArea.value]);
-    },
-		rerun = function () {
-      var result = runDaSpec(markdownArea.value, stepsArea.value, sutArea.value);
-			$('#outputArea').text(result.text);
-      updateAlert(result.counts);
-			formattedOutputArea.innerHTML = converter.makeHtml(result.text);
-		},
-		converter = new showdown.Converter({simplifiedAutoLink: true, strikethrough: true, ghCodeBlocks: true, tables: true});
-	markdownArea.addEventListener('change', function () {
-		formattedMarkdownArea.innerHTML = converter.makeHtml(markdownArea.value);
-	});
-	formattedMarkdownArea.innerHTML = converter.makeHtml(markdownArea.value);
-	runButton.addEventListener('click', rerun);
-});
-</script>
-
-</div>
-    <div class="container bottom">
-    <p>Built by <a href="https://twitter.com/gojkoadzic" target="_blank">@gojkoadzic</a> and <a href="https://twitter.com/davedf" target="_blank">@davedf</a>.</p>
-    <p>Copyright 2015 Sauf Pompiers Ltd. Code licensed under <a rel="license" href="https://github.com/daspec/daspec-js/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+	
+	<script type="text/javascript" src="bower_components/daspec/compiled/daspec-web.js"></script>
+	<script type="text/javascript" src="bower_components/showdown/dist/showdown.js"></script>
+	<script type="text/javascript" src="layout-example.js"></script>
 </div>
 
 
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<div class="container bottom">
+	<p>Built by <a href="https://twitter.com/gojkoadzic" target="_blank">@gojkoadzic</a> and <a href="https://twitter.com/davedf" target="_blank">@davedf</a>.</p>
+	<p>Copyright 2015 Sauf Pompiers Ltd. Code licensed under <a rel="license" href="https://github.com/daspec/daspec-js/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
 </body>
 
