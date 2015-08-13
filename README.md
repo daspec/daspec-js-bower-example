@@ -8,8 +8,7 @@ to pull the dependencies. You should be able to open the [index.html](index.html
 
 ## How this works
 
-The magic is in [runspec.js](runspec.js) - that file shows how to wire up DaSpec with a minimal configuration that outputs markdown and produces a
-counter for passed, failed and skipped steps. 
+The magic is in [layout-example.js](layout-example.js) - the `runDaSpec` function shows how to wire up DaSpec with a minimal configuration that outputs markdown and produces a counter for passed, failed and skipped steps. 
 
 
 For more information on DaSpec, see [http://daspec.com](http://daspec.com)
