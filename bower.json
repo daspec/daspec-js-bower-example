@@ -1,6 +1,5 @@
 {
   "name": "daspec-js-bower-example",
-  "version": "0.0.1",
   "authors": [
     "Sauf Pompiers <contact@saufpompiers.com>"
   ],
@@ -22,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "daspec": "*",
+    "daspec": ">=0.0.9",
     "showdown": "~1.2.2",
     "bootstrap": "~3.3.5",
     "ace-builds": "~1.2.0"

@@ -1,14 +1,7 @@
 /*global document, $, window, showdown, DaSpec, ace*/
 var runDaSpec = function (spec, steps, systemUnderTest) {
 		'use strict';
-		var exportObject = function (object) {
-			var v;
-			for (v in object) {
-				window[v] = object[v];
-			}
-		},
-		defineSteps = function (context) {
-				exportObject(context); // syntax sugar, allow steps to just call defineStep instead of context.defineStep
+		var defineSteps = function () {
 				//jshint evil:true
 				eval(systemUnderTest + '\n' + steps);
 				//jshint evil:false
