@@ -21,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "daspec": ">=0.0.9",
+    "daspec": ">=1.0.0",
     "showdown": "~1.2.2",
     "bootstrap": "~3.3.5",
     "ace-builds": "~1.2.0"
