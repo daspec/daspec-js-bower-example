@@ -1,4 +1,4 @@
-/*global document, $, window, showdown, DaSpec, ace*/
+/*global document, $, window, showdown, DaSpec, ace, Promise*/
 var runDaSpec = function (spec, steps, systemUnderTest) {
 		'use strict';
 		var defineSteps = function () {
@@ -6,20 +6,18 @@ var runDaSpec = function (spec, steps, systemUnderTest) {
 				eval(systemUnderTest + '\n' + steps);
 				//jshint evil:false
 			},
-		runner, result, markdownFormatter, counter;
-		try {
-			runner = new DaSpec.Runner(defineSteps);
-			counter = new DaSpec.CountingResultListener(runner);
-			markdownFormatter = new DaSpec.MarkdownResultFormatter(runner);
-			runner.execute(spec);
-			result = markdownFormatter.formattedResults();
-		} catch (e) {
-			result = '    ' + (e.stack || e.message || e.name || 'there was a problem executing the specification');
-		}
-		return {
-			text: result,
-			counts:  counter.current
-		};
+		runner, markdownFormatter, counter;
+		runner = new DaSpec.Runner(defineSteps);
+		counter = new DaSpec.CountingResultListener(runner);
+		markdownFormatter = new DaSpec.MarkdownResultFormatter(runner);
+		return new Promise(function (resolve, reject) {
+			runner.execute(spec).then(function () {
+				resolve({
+					text: markdownFormatter.formattedResults(),
+					counts:  counter.current
+				});
+			}, reject);
+		});
 	},
 	daspecExamplePageLoad =  function () {
 		'use strict';
@@ -50,10 +48,15 @@ var runDaSpec = function (spec, steps, systemUnderTest) {
 				});
 			},
 			rerun = function () {
-				var result = runDaSpec(specEditor.getValue(), stepsEditor.getValue(), sutEditor.getValue());
-				outputEditor.setValue(result.text);
-				updateAlert(result.counts);
-				formattedOutputArea.innerHTML = converter.makeHtml(result.text);
+				runDaSpec(specEditor.getValue(), stepsEditor.getValue(), sutEditor.getValue()).then(function (result) {
+					outputEditor.setValue(result.text);
+					updateAlert(result.counts);
+					formattedOutputArea.innerHTML = converter.makeHtml(result.text);
+				}, function (e) {
+					var text = '    ' + (e.stack || e.message || e.name || 'there was a problem executing the specification');
+					outputEditor.setValue(text);
+					formattedOutputArea.innerHTML = converter.makeHtml(text);
+				});
 			},
 			converter = new showdown.Converter({simplifiedAutoLink: true, strikethrough: true, ghCodeBlocks: true, tables: true}),
 			stepsEditor = ace.edit('stepsArea'),
